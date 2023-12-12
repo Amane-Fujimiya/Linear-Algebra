@@ -25,4 +25,4 @@ Group, Ring, Field.canvas (Canvas file can be opened via [Canvas](https://www.ca
 - Unit 4.2 - Determinant
 - Unit 4.3 - System of Equation Solving, Gauss-Jordan Elimination Process and Cantor Formula for Determinant
 
-This repo is not cross-checked, and is a personal lecture note repository. Use at your own risk, while also have in mind that currently, the repo is not yet complete. Further commit will changes the contents. 
+This repo is not cross-checked, and is a personal lecture note repository. Use at your own risk, while also have in mind that currently, the repo is not yet complete. Further commit will change the contents. 
