@@ -12,7 +12,7 @@ Order to order, this is the content of Linear Algebra course, taken in 1st Semes
 - Unit 2 - Polynomial Ring
 - Unit 2 - Polynomial Ring (cont.2)
 - [[Unit 2 - Polynomial Ring (cont.)
-Group, Ring, Field.canvas (Canvas file can be opened via [Canvas](https://www.canva.com/graphs/diagrams/)
+Group, Ring, Field.canvas (Canvas file can be opened via [Canvas](https://www.canva.com/graphs/diagrams/) )
 ## Vector Spaces
 - Unit 3 - Vector Spaces
 - Unit 3.1 - Linear Combination, System of Linear Independence Vector Spaces
