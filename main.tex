@@ -1,0 +1,726 @@
+\documentclass{book}
+\usepackage[utf8]{inputenc}
+\usepackage{tocloft}
+\usepackage[tc]{titlepic}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{clrdblpg}
+\usepackage{titlesec}
+\usepackage{calc}
+\usepackage{lmodern}
+\usepackage{lipsum}
+\usepackage{multirow}
+\usepackage{sectsty}
+\usepackage{isotope}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+\usepackage{svrsymbols}
+\pgfplotsset{compat=1.10}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+\usepackage{hepparticles}
+\usepackage{breqn}
+\usepackage{thmtools}
+\usepgfplotslibrary{fillbetween}
+\usepackage[executivepaper,margin=1in]{geometry}
+\definecolor{title}{RGB}{180,0,0}
+\definecolor{other}{RGB}{171,0,255}
+\definecolor{name}{RGB}{255,0,0}
+\definecolor{phd}{RGB}{0,0,240}
+\setcounter{secnumdepth}{5}
+\setcounter{tocdepth}{7}
+\renewcommand\cftaftertoctitle{\par\noindent\hrulefill\par\vskip-4.3em}
+\newtheorem{Definition}{Definition}[section]
+\newtheorem{Theorem}{Theorem}[section]
+\newtheorem{Rule}{Derivative Rule}[section]
+\newtheorem{identity}{Identity}[section]
+\numberwithin{identity}{subsection}
+\numberwithin{Rule}{subsection}
+\numberwithin{Theorem}{subsection}
+\numberwithin{Definition}{subsection}
+\title{Linear Algebra Lecture Notes}
+\author{Amane Fujimiya}
+\date{November 2023}
+\renewcommand{\thesection}{\Roman{section}} 
+\renewcommand{\thesubsection}{\thesection.\Roman{subsection}}
+\renewcommand{\thesubsubsection}{\thesubsection.\Roman{subsubsection}}
+\begin{document}
+
+\maketitle
+
+\chapter{ Set, Relations and Functions}
+\section{ Set} 
+A set is a collections of objects, either algebraic structures, rigorous mathematics, or plain simple objects such as a collection of collected apples during harvest seasons. 
+
+A set $X$ will have its collection of objects inside. If an object $x$ is inside $X$, or $x$ in $X$, we write it as $$x \in X$$
+with the notation $\in$ as the representation.
+\subsection{Describing a set} 
+To describe a set, we use some way of listing the set: 
+\subsubsection{1. Listing elements of a set} 
+Example includes: 
+$$\mathbb{N}=\{0,1,2,\cdots\}$$
+of natural numbers set $\mathbb{N}$. For integer $\mathbb{Z}$, then $$\mathbb{Z}=\{0,\pm1,\pm2,\cdots\}$$
+and for rational number: $$\mathbb{Q}=\left\{r= \frac{m}{n}:m,n\in \mathbb{Z},n \neq 0 \right\}$$
+
+\subsubsection{2. Identification of set's properties}
+
+If a set $E$ includes elements with some types of properties, we write $$E=\{x:T(x)\}$$
+For example, the set $P$ of all even numbers is $$E=\{x:x=2k,k\in \mathbb{Z}\}$$
+
+This is explained as for all even number, there is a properties that $x=2k$ for all $k\in \mathbb{Z}$, that is, $x$ must have an even factor of $2$. 
+
+\section{Subset. Empty set}
+
+For any set $X$, given another set $A$. $A$ is the subset of $X$ if $x\in A$ then $x \in X$, denoted $$A \subseteq X$$ or $$X \supseteq A$$
+
+The first notation is the subset notation, the second one establish a reverse relation, called superset, that is $X$ is a superset of $A$. If $A \subseteq X$, and we have $y \in X$ but $y \notin A$, then $A$ is a proper subset of $X$, denoted $$A\subset X$$
+
+An empty set is a set that contains no elements. It is denoted as $\varnothing$. Conventionally, $\varnothing \in X$ for all $X$. 
+\vspace{3mm}
+Two sets $A$ and $B$ is equal if $A \subseteq B$ and $B \subseteq A$, then $A = B$. 
+
+\section{Logic notations}
+
+A mathematical statements can be either right or wrong, no more. To simplify and generalize the wording (and to shorten the sentence), we use those notations: 
+\begin{enumerate}
+    \item $S \Rightarrow T$ means $S$ is right then $T$ is right.
+    \item $S \iff T$ means that $S$ is right then $T$ is right and the reverse is true. 
+    \item $\forall x \in X: S$ means for all $x$ in $X$ there is a statement $S$.
+    \item $\exists x \in X:S'(\exists! x \in X: S)$ means that there exists one and only $x \in X$ so that $S$ is right.
+\end{enumerate}
+
+\section{Logics operation}
+Given two sets $A$ and $B$, some operations on them are
+
+\begin{Definition}
+    Union of Sets.
+
+    Union of $A$ and $B$ is $$A\: \cup B = \{x: x \in A \: or \: x \in B\}$$
+\end{Definition}
+
+\begin{Definition}
+    Intersection of Sets
+
+    Intersection of $A$ and $B$ is $$A \cap B = \{x:x\in A \: and \: x \in B\}$$
+\end{Definition}
+
+\begin{Definition}
+    Difference between sets
+
+    The difference between $A$ and $B$ is $$A \setminus B =\{x: x\in A \: and \: x \notin B\}$$
+\end{Definition}
+
+If $A \cap B = \varnothing$, then $A$ and $B$ are disjoint. If $A \subseteq X$ then the notation $C_{X}A= X \setminus A$ is the complement of $A$ in $X$. 
+
+The union of a family of sets is denoted as $$\bigcup_{i \in I} A_{i} = \{x: \exists i \in I, x \in A_{i}\}$$
+The intersection of a family of sets is denoted as $$\bigcap_{i\in I} A_{i}=\{x: x\in A_{i}, \forall i \in I\}$$
+\subsection{Properties of set operation}
+
+Sets operations above have some interesting and elementary property:
+\begin{enumerate}
+   \item Commutativity: \begin{align}
+A \cup B = B \cup A \\ \\
+A \cap B = B \cap A
+\end{align}
+\item Associativity: \begin{align} \\
+(A\cup B)\cup C = A \cup (B \cup C)  \\
+(A \cap B) \cap C = A \cap (B \cap C)
+\end{align}
+
+\item Distributivity: \begin{align} \\
+A \cup (B \cap C) = (A \cup B) \cap (A \cup C) \\
+A \cap (B \cup C) = (A \cap B) \cup (A \cap C)
+\end{align}
+
+\end{enumerate}
+
+\subsection{De Morgan Theorem}
+The De Morgan Theorem for Sets is given as 
+$$X\setminus \left(\bigcup_{i \in I} A_{i}  \right)=\bigcap_{i \in I} (X \setminus A)$$
+and
+$$X\setminus\left(\bigcap_{i \in I} A_{i}\right)= \bigcup_{i \in I} (X \setminus A_{i})$$
+
+
+
+\section{Set Relations}
+\subsection{Descartes Product of Sets}
+Given two sets $X$ and $Y$, then the Cartesian product (or Descartes product) $X \times Y$ is defined as $$\displaystyle A\times B=\{(a,b)\mid a\in A\ {\mbox{ and}}\ b\in B\}$$
+Generally, for a set of sets $S_{i}$ with $i \in I$ $$S_{i}=\{S_{1,}S_{2}, S_{3},\cdots\}$$
+The Cartesian product of elements in $S_{i}$ is $$\prod_{i=1}^{n} S_{i} = \{x = (x_{1}, x_{2}, \cdots , x_{n}): x_{i} \in S_{i,}i = 1,2,\cdots,n\}$$
+If $S_{1}=S_{2}=\cdots S_{n}$ then we have $S_{1}\times S_{2} \times \cdots \times S_{n}= S^{n}$. This is called n-nary Cartesian/Descartes product of $S_i$. 
+
+\subsection{Formal definition of Relations}
+
+We here will state the definition of relations between sets
+\begin{Definition}
+    Given a set $X$, then each $S \subset X \times X$ is an relation on $X$
+\end{Definition}
+
+If the ordered pair $(x,y)\in S$ then we say that $x$ is in relation $S$ with $y$, denoted $xSy$. Then we have: 
+\begin{Theorem}
+    Suppose $S$ is an relation on $X$, then 
+    \begin{enumerate}
+        \item $S$ is called reflexive relation if $x S x, \forall x \in X$. 
+        \item S is called symmetric if $xSy$ then $ySx$. 
+        \item S is called transitive if $xSy$ and $ySz$ then $xSz$. 
+        \item S is called anti-symmetric if $xSy$ and $ySx$ then $x=y$.
+    \end{enumerate}
+\end{Theorem}
+
+Relations have different types. One of the well-known and widely used relation is the equivalent relation
+
+\begin{Definition}
+    An equivalent relation is a relation that has reflective, symmetric and transitive properties
+\end{Definition}
+
+Notation for equivalent relation is $\sim$, then $xSy \rightarrow x \sim y$ for equivalent relation.
+
+For each $x$, we set $$\bar{x}=\{x' \in X: x' \sim x \}$$
+
+then $\bar{x}$ is called an equivalent class with $x$ as it main. By reflective properties, we see that $$x \in \bar{x}$$
+
+then $$\bar{x} \neq \varnothing,\: \bigcup_{x \in X} \bar{x}=X$$
+
+The family of subsets $\{A_{i}\}_{i \in I}$ of $X$ is called a \textbf{class separation} of $X$ if $A_{i}\neq \varnothing$ for $\forall i \in I$. A property of this is that $$A_{i}\cap A_{j}=\varnothing\:\: if\:\: \left(i \neq j, \bigcup_{i \in I} = X\right) $$
+
+The set of all equivalence classes of $X$ is denoted $X \setminus \sim$. Notationally, $$X\setminus \sim = \{\bar{x}| x \in X\}$$
+\vspace{5mm}
+Next, we have the ordering relation. 
+
+\begin{Definition} Ordering relation
+
+    An ordering relation on a set is a relation that is reflexive, transitive, and anti-symmetric.
+An ordering relation is often denoted $\leq$, and has these following properties:
+\begin{enumerate}
+    \item $x \leq x, \forall x \in X$
+    \item $x\leq y, y \leq z \Rightarrow x \leq z$
+    \item $x \leq y, y \leq x \Rightarrow x = y$
+\end{enumerate}
+\end{Definition}
+
+If $x \leq y$ then we say that $x$ stands before $y$, or the reverse. If $x \leq y$ and $x \neq y$ then we say that $x$ is totally behind $y$ and we write $x < y$. 
+
+A set $X$ that has an ordering relation is called an ordered set and denoted $(X, \leq)$. If for all $x,y \in X$ we always have $x \leq y$ or $y \leq x$ then the set is a totally ordered set (totality of a set).
+
+\section{Functions and Mappings}
+
+We begin with the definition of functions
+
+\begin{Definition}
+    A map $f$ from $X$ to $Y$, denoted $f: X \longrightarrow Y$ or $X \longrightarrow^{f} Y$ is a rule that bind each $x \in X$ with exactly one $y = f(x) \in Y$.
+\end{Definition}
+
+\subsection{Composition of mapping}
+Given two maps $f: X \longrightarrow Y$ and $g: Y \longrightarrow Z$, the product or composition of two maps $f$ and $g$ is $g \circ f: X \longrightarrow Z$ and is defined as $$g \circ f = g(f(x)), \forall x \in X$$
+
+The image of $A \subseteq X$ through the map $f$ is the set $$f(A)= \{f(x):x\in A\}$$
+
+Next, we also have the set denoted as $Imf=f(X)$, then $Imf$ is called image of mapping $f$. 
+
+The inverse image of $D \subseteq Y$ is the set $$f^{-1}(D)=\{x\in X: f(x)\in D\}$$
+
+\subsection{Types of Mapping}
+For a mapping, there are three types of mapping, which is injective, bijective and surjective, as well as some special cases. We will then go to define such mapping style. 
+
+\subsubsection{Injection mapping}
+A map $f$ is injective if $$\forall x , x' \in X, x \neq x' \Rightarrow f(x)\neq f(x')$$
+This can be written also as $$\forall x, x' \in X, f(x)=f(x')\Rightarrow x = x'$$
+\subsubsection{Surjection mapping}
+A map $f$ is surjective if $$Imf=Y$$
+In more detail, that is $$\forall y\in Y,\exists x\in X{\text{ such that }}y=f(x).$$
+\subsubsection{Bijection mapping}
+A map $f$ is bijective if $f$ is both surjective and injective. Comprehensively, $$\displaystyle \forall y\in Y,\exists !x\in X{\text{ such that }}y=f(x)$$
+
+One note is that the composition of injective mappings is an injective mapping, so do surjective, thus we also have bijection mappings to have bijective compositions. 
+
+\subsubsection{Reverse Mapping and Identity}
+Suppose $f: X \longrightarrow Y$ is a bijective mapping from $X$ to $Y$. Then for each $y \in Y$, there exists one and only $x\in X$ so that $f(x)=y$. Then we have a mapping $g: Y \longrightarrow X$ defined as $$\forall y \in Y, x \in X: g(y) = x, f(x) = y \Longrightarrow g \circ f= i_{X}, f \circ g = i_{Y}$$
+Then, the mapping $g$ is called a reverse mapping of $f$ and denoted $f^{-1}$
+
+Here, we have the mapping called identity mapping. The \textbf{identity function} on any nonempty set $A$ maps any element back to itself: $$I_{A}=i_{A}:A \longrightarrow A, I_{A}(x)=x$$
+
+\subsection{Equivalence functions (same 'force' relation)}
+
+\begin{Definition} Equivalent functions
+
+    Two sets $X$ and $Y$ is called equivalent, that is $X \sim Y$ if there exists a bijective relation $f: X \longrightarrow Y$. 
+\end{Definition}
+
+We will inspect some properties of equivalence function, by defining a mapping $E_{n}$, that is $$f: E_{n}\rightarrow A, f(k)=a_{k} \forall k \in K=\{1, 2,\cdots, n\}$$
+
+\chapter{Group, Ring, Field}
+
+\section{Binary operation}
+\subsection{Definition}
+
+\begin{Definition} Binary Relations
+    Suppose $X$ is a set. then a mapping $\theta: X \times X \longrightarrow X$ is a binary operation on $X$.
+\end{Definition}
+
+From the definition, then $\theta(x,y)$ is the result of $x$ and $y$, or the product of those two. 
+\subsection{Binary properties}
+
+Considering a binary operation $\theta$ on $X$, then $\theta$ is called: 
+
+\vspace{5mm}
+
+Associative if $$(x\cdot y)\cdot z=x\cdot(y\cdot z), \forall x,y,z\in X$$
+
+\vspace{5mm}
+
+Symmetric if $$x\cdot y = y \cdot x, \forall x,y \in X$$
+
+\vspace{5mm}
+
+There exists an identity element $e$ that $$\forall e,x \in X, e\cdot x=x \cdot e = x$$
+From the third conditional, we then have a proposition: 
+
+\begin{Theorem}Proposition 
+For all binary operation and set $X$, there is only one identity element. 
+\end{Theorem}
+
+The proof is easy because by definition, we suppose an element $e'$ which is also an identity element. Then because of that $e\cdot e' = e'$ and this is equal to $e$. Thus $e'$ and $e$ are the same. QED. 
+
+Aside from those, we also have inverse elements
+\begin{Definition}
+    Inverse Elements
+
+An element $x \in X$ is called an inverse element if there exists $y \in X$ that $$x\cdot y = y \cdot x = e$$
+    
+\end{Definition}
+
+From the definition, we have the second proposition
+
+\begin{Theorem}
+    Proposition 2
+If the binary operation $\theta$ has associative properties then for each $x \in X$, there exists only one inverse element denoted $x^{-1}$
+\end{Theorem}
+
+\subsection{Internal binary operation}
+Definition of internal binary operation can be as follow: 
+
+\begin{Definition}
+    Definition 
+A binary operation on a non-empty set $S$ is any mapping $$f: S \times S \longrightarrow S$$ such operation with $x,y\in S$ and the operation $f$ result in $f(x,y)\in S$ is called an **internal binary operation**, denoted $T$
+\end{Definition}
+
+Thus, the binary operation $f: x,y\mapsto x+y$ is an internal binary operation in $\mathbb{R}$.
+
+\subsection{External binary operation}
+
+In cases that we want the Cartesian product to contain another set, i.e., the mapping of of both set onto one other, we can define the inverse of an internal binary operation: 
+
+\begin{Definition}
+     Definition 2.3
+     A binary operation on $S\notin \varnothing$ $$f: S \times F \longrightarrow S$$ with F is another set. Comprehensively, this is similar as $x\in S$, $y \in F$ then $f(x,y)\in S$, then the binary operation is called an **external binary operation**, denoted $\perp$ 
+\end{Definition}
+
+\subsection{Homomorphism and Isomorphism}
+
+A homomorphism is a map between two algebraic structure of the same type that preserve the operation of the structures. 
+
+\begin{Definition}
+    Homomorphism 
+A mapping $f:E\longrightarrow F$ with $F$ as a set with an internal binary operation $T$, and a set $E$ with binary operation $T'$, and both have an external binary operation $\perp$ on a set $\Omega\not\subseteq F,E$. Then, $f$ is a homomorphism if it satisfies: $$f(x\:T\:y) = f(x)\:T'\:f(y), \forall x,y \in E$$ and $$f(\lambda \perp x) = \lambda \perp ' f(x) \forall x \in E, \forall \lambda \in \Omega$$
+\end{Definition}
+
+For this, we can say that $E$ and $F$ have a homomorphism $f$ with them. If a homomorphism is also bijective, that is, one-on-one correspondence, then the homomorphism $g$ is called an isomorphism. For this, it means that for each $h: E \longrightarrow F$ there exists a mapping $h':F\longrightarrow E$ that satisfies all the aforementioned properties.
+
+After this, now we have the tools to appropriately describe three main types of algebraic structure: group, ring and field. 
+
+\section{Group, Ring and Fields}
+\subsection{Group}
+We begin by stating the definition of group. 
+
+\begin{Definition}
+    Groups
+Let $G$ be a non-empty set with binary operation $T$. Then $(G,T)$ is called a group if the following holds: 
+\begin{enumerate}
+    \item (G1) Binary operation $T$ is associative: $$xT(yTz)= (xTy)Tz$$
+\item (G2) $G$ has an identity element with respect to $T$, that is $\exists e\in G, \forall x \in G, xTe = eTx = x$
+\item (G3) $\forall x \in G, \exists h \in G$ such that $gTh=hTg=e$, meaning $h$ is an inverse element of $g$ and reverse. 
+\end{enumerate}
+\end{Definition}
+
+If a group is also commutative, that is $$xTy = yTx\:\forall e \in G$$ then we call it an \textbf{Abelian group}. 
+
+\subsubsection{Subgroup}
+
+\begin{Definition}
+    Subgroup definition
+Let $G$ be a group. Then for $H\subseteq G$ we called $H \neq \varnothing$ a subgroup of $G$ if, for $H$ with binary operation 
+\begin{enumerate}
+    \item $T$, $x,y\in H$ then $xTy\in H$ 
+    \item $x\in H$ then $x^{-1}\in H$ 
+    \item $e\in G$ then $e\in H$
+\end{enumerate}
+
+Further in, if $H\neq G$ then we say $H$ is a **proper subgroup** of $G$.
+\end{Definition}
+
+\subsection{Group Homomorphism, Group Isomorphism}
+We here will present and state the definition of homomorphism within groups. 
+
+\begin{Definition}
+    Group Homomorphism 
+ Given $E,F$ as groups. A homomorphism from $E$ to $F$ is a function mapping $f:E\longrightarrow F$ such that $$f(xTy)=f(x)T'f(y),\forall x,y \in G$$ with $T$ as the binary operation on $E$ and $T'$ on $F$. This is called a \textbf{group homomorphism}
+\end{Definition}
+
+Group homomorphism is often referred to as group map for short. 
+
+\vspace{5mm}
+
+Continuing, we have the definition of isomorphism:
+\begin{Definition}
+    Group Isomorphism 
+ If a group homomorphism $f: E \longrightarrow F$ is also bijective, then $f$ is called a group isomorphism, with two group $(E,*)$ and $(F,\odot)$ Two groups are isomorphic if there exists an isomorphism from one to the other, written as $$(E,*)\cong (F,\odot)$$
+\end{Definition}
+
+\subsection{Ring}
+
+\begin{Definition}
+    Ring 
+    An algebraic structure $(R,+,\cdot)$ is called a ring if for $R\neq \varnothing$ and two binary operation $+$ and $\cdot$, such that 
+    \begin{enumerate}
+        \item The group $E$ with operation $(+)$, or $(R,+)$ is an Abelian group. that is:
+        \begin{enumerate}
+            \item $\forall a,b,c\in R, a+(b+c)=(a+b)+c$
+            \item $\exists e\in R,\forall a \in R \rightarrow a+e=e+a=a$
+            \item $\forall a \in R, \exists! -a \in R\:\text{such that}\:a+(-a)=(-a)+a=0$
+            \item $\forall a,b \in R, a+b=b+a$
+        \end{enumerate}
+        \item Multiplication: $\forall a,b,c\in R$, we have $a\cdot(b\cdot c)=(a\cdot b)\cdot c$
+        \item Addition and multiplication together: $\forall a,b,c \in R$, $$a\cdot (b+c)=a\cdot b + a \cdot c$$ and $$(a+b)\cdot c=a\cdot b+ b\cdot c$$
+    \end{enumerate}
+\end{Definition}
+
+
+\subsubsection{Subring} 
+
+\begin{Definition}
+    Subring 
+Let $R$ be a ring and $S\subset R$ be a subset. We say $S\subset R$ is a subring if 
+\begin{enumerate}
+    \item $S$ is closed under addition and multiplication: $$r,s\in S\implies r+s, r\cdot s \in S$$
+\item $S$ is closed under additive inverses: $$r\in S \implies r^{-1} \in S$$
+\item $S$ contains the identity $1_{R}\in S$
+\end{enumerate}
+\end{Definition}
+
+Here, the word closed means that for all operation, the result is also in the set of the subring. 
+
+\subsubsection{Commutative Ring}
+
+\begin{Definition}
+    Commutative Ring
+    
+    A commutative ring $(K,+,\cdot)$ is a ring that the multiplication binary operation is commutative: $$x\cdot y = y \cdot x ;\forall x, y \in K$$
+\end{Definition}
+
+\subsubsection{Ring Homomorphism} 
+Given $(K, +, \cdot)$ and $(K',+,\cdot)$ are the given rings. We said that $$f: K \longrightarrow K'$$ is a ring homomorphism if $$f(x+y)=f(x)+f(y)$$
+and $$f(x\cdot y)= f(x)\cdot f(y)$$
+
+As we see, each ring homomorphism is a mapping that conserves the mathematical operation of the structure. 
+
+If $f$ is also bijective then we say that $f: K \longrightarrow K'$ is a **ring isomorphism**. 
+
+\subsection{Field}
+
+\begin{Definition}
+    Definition of a field 
+    
+    A structure $(R,+,\cdot)$ where $+$ and $\cdot$ are two binary operation on $R$ is a field if
+
+    \begin{enumerate}
+        \item $(R,+)$ is an Abelian group. 
+\item $(R\setminus \{0\},\cdot)$ is an Abelian group. 
+\item The distributive laws hold. 
+    \end{enumerate}
+\end{Definition}
+
+A more "easy definition" of a field is as followed. 
+
+\begin{Definition}
+    Field Definition 2
+
+    A field is a **commutative ring** $(K, +,\cdot)$ with unit $1 \neq 0$, and $$\forall x \neq 0, \exists x^{-1}\in K\: \text{such that}\: x\cdot x^{-1}=1$$
+\end{Definition}
+
+\subsubsection{Subfield} 
+Given that $(K,+,\cdot)$ is a field. Then the subfield of $(K,+,\cdot)$ is a ring $P\neq \{0\}$ that satisfy: $$\forall x \in P,\: \text{if}\: x \neq 0 \implies x^{-1}\in P$$
+
+\section{Polynomial Ring}
+
+A polynomial ring is a ring of polynomials such as $P(n)$, and each element of the ring is defined as: 
+$$P(n)=a_{n}x^{n}+\cdots + a_{1}x^{1}+a_{0}=\sum\limits_{i=0}^{n}a_{i}x^{i}$$
+For two polynomials $P(n)$ and $G(m)$ to be equal, then $$a_{n}=b_{m},\forall m,n \in I = \{1,\cdots,n\}$$
+The degree of a polynomial is denoted $d^{\:\circ} P(n)$ and evaluated to $n$, or $$d^{\:\circ} P(n)=n$$
+
+
+\subsection{Polynomial Ring Operations}
+
+Given a polynomial ring $(K,+,\cdot)$, this ring has two operation $+$ and $\cdot$ defined as below
+
+\begin{Definition}[Polynomial Summation]
+    Given two polynomial $P(n)$ and $G(m)$ such that 
+    
+    $$P(n)=\sum\limits^{n}_{k=0}a_{k}x^{k}$$ and $$G(m)=\sum\limits^{n}_{k=0}b_{k}x^{k}$$ with $k\in I =\{1,\cdots,n\}$, the operation $P(n)+G(n)$ is defined to be $$P(n)+G(m)= \sum\limits_{k=0}^{n}(a_{k}+b_{k})x_{k}=\sum\limits_{k=0}^{n} C_{k}x^{k}\:, \: \forall m \leq n, C_{k}= a_{k}+b_{k}$$
+\end{Definition}
+
+\begin{Definition}[Polynomial Product]
+    Given two polynomial $P(n)$ and $G(m)$ such that
+    
+    $$P(n)=\sum\limits^{n}_{k=0}a_{k}x^{k}$$ and $$G(m)=\sum\limits^{n}_{k=0}b_{k}x^{k}$$ with $k\in I =\{1,\cdots,n\}$, the operation $P(n)\cdot G(n)$ is defined to be $$P(n)\cdot G(n)= \sum\limits^{n+m}_{s=0}\left[\sum\limits_{R(k,l): k + l = s} (a_{k}b_{l})x^{s}\right] = \sum\limits_{s=0}^{n+m} D_{s} x^{s} \: \text{with} \: \left(D_{s}= \sum\limits_{R(k,l): k+l = s} a_{k}b_{l}\right) $$
+\end{Definition}
+
+\subsection{Polynomial Division and Euclidean Division Algorithm for Polynomial}
+
+Given $G(x)$ and $P(x)$ as two polynomial in ring $(S,+,\cdot)$, we have the division of them, $$\frac{P(x)}{G(x)}$$ defined as $$\frac{P(x)}{G(x)}= H(x), R(x) \: \text{such that}\: P(x) = H(x)G(x) + R(x) $$ with $d^{\:\circ}R(x)< d^{\:\circ}G(x)$. Same for Euclidean division of normal number, $P(x)$ is the dividend (the one being divided), $G(x)$ is the divisor (the one that divides the dividend) and $H(x)$ is the quotient, while $R(x)$ is the remainder polynomial. 
+
+\subsubsection{Division Algorithm}
+
+All elementary school long division. Divide by the highest degree variable, then multiply back the divisor and take the dividend subtract the divisor, and repeat the process. This is called polynomial long division, albeit there is indeed another one called short division.
+
+\subsubsection{Root of Polynomial}
+
+A element $\alpha\in K$ is called the root of a polynomial with degree $n>0$ if we replace $\alpha$ for $x$, we have $$f(x)=a_{n}\alpha^{n} + \cdots + a_{1}\alpha + a_{0}=0$$
+
+Then, we have a statement about this
+
+\begin{Theorem}[Theorem of root of polynomial]
+    The element $\alpha \in K$ is the root of $f(x)\in K[x]$ with degree $n >0$ if and only if $$f(x) | (x-\alpha)$$
+\end{Theorem}
+
+Continuing, we see that for polynomial $f(x)\in K[x]$ with $n >0$, the element $\alpha \in K$ is called a multiple root if $$f(x)\:|\: (x-\alpha)^k$$ but not for $(x-\alpha)^{k+1}$
+
+From all of this, we can say that a polynomial $f(x)$ with $n>0$ be its degree \textbf{does not have more than $n$ root, even with multiple root}
+
+\subsection{GCD (Greatest Common Divisor) of Polynomial}
+
+The common divisor of two Polynomial $P(x)$ and $G(x)$ is $d(x)$ such that $$d
+\mathrel{\vdots} P(x)\quad \text{and} \quad d \mathrel{\vdots} G(x)$$
+Then $d(x)$ is called GCD of $P(x)$ and $G(x)$ if $D(x)$ is divisible to all common divisor of $P(x)$ and $G(x)$ 
+A property of $d(x)$ is presented. Suppose that $$d
+\mathrel{\vdots} P(x)\quad \text{and} \quad d \mathrel{\vdots} G(x)$$ then $$d \mathrel{\vdots} [P(x)\pm G(x)]$$ and $$d\mathrel{\vdots}F(x)\cdot G(x)$$
+
+\subsection{Properties of GCD of Polynomial}
+
+Here we will state some property of GCD of polynomial
+
+\begin{Theorem}
+
+    Each GCD of a pair of polynomial $P(x), G(x)\neq 0$ is different by one zeroth order $(n=0)$ factor. 
+\end{Theorem}
+
+\begin{Theorem}
+    If $d(x)$ is the GCD of $P(x)$ and $G(x)$, then $a\cdot d(x)$ is also a GCD of $P(x), G(x)$ with $a \in K, a \neq 0$
+\end{Theorem}
+
+If $P(x)$ and $G(x)$ both has a GCD, then there exists only one norm form, or original form of the GCD. This is from the property 3 of which $a\cdot d(x)$ is also a GCD, thus $d(x)$ is the original GCD and exists only one. 
+
+The \textbf{norm form - original GCD} is denoted as $$(f(x)\:;\:g(x))$$ for every two polynomials $f(x),g(x)$
+
+Apart from those, we will also have a general theorem for GCD of polynomials: 
+
+\begin{Theorem}[Existence of GCD]
+    There is always GCD for every pair $P(x)\neq 0$, $G(x)\neq 0$
+\end{Theorem}
+
+\subsubsection{Prime Polynomial}
+
+Two polynomials are called \textbf{prime polynomial} if for $f(x),g(x)\neq 0; f(x), g(x) \in K[x]$, then they have $$(f(x)\:;\: g(x))=1$$
+From this, we have a theorem: 
+
+\begin{Theorem}[Theorem of Prime Polynomial]
+    Two polynomials $f(x)\neq 0$ and $g(x)\neq 0$ are both prime polynomial if and only if there is two polynomial $u(x),v(x)\in K[x]$ such that $$f(x)u(x)+g(x)v(x)=1$$
+\end{Theorem}
+
+\subsection{Irreducible Polynomial}
+
+A polynomial $P(x)\neq 0$ of degree $n$ is called \textbf{irreducible} if it cannot be factored into $$P(x)=P_{1}(x)\cdot P_{2}(x)$$  of which $$0<d^{\circ}(P_{1}(x), P_{2}(x))<n$$
+From this, we also can say that all degree 1 polynomials are irreducible. And hence, all polynomial with degree $n\geq2$ irreducible on $K[x]$ will have no root in $K[x]$, that is, undefined in such ring. Thus the irreducible property of polynomial depends on the property of ring $K$. 
+
+\subsection{Polynomial on $\mathbb{C}$}
+
+We assume the following theorem as right, which can be used as axiom. 
+
+\begin{Theorem}
+    Every polynomial $p(x)$ with $d^{\circ}(P(x))=n>0$ on $\mathbb{C}$ has complex root.
+\end{Theorem}
+
+Consider $g(x)$ as a complex polynomial, with $d^{\circ} (g(x))=n>0$, then by axiom 1.6.1, we have that $g(x)$ has a complex root $a_{1}$. Then the polynomial can be written as: $$g(x)=(x-a_{1})q_{1}(x)$$ with $q_{1}(x)$ be a complex polynomial on $\mathbb{C}$. Then further assume that $q_{1}(x)$ is reducible, and has a complex root $a_2$, then $q_{1}(x)$ can be written as: $$q_{1}(x)= (x-a_{2})q_{2}(x)$$ Thus from here, we have that $$g(x)= (x-a_2)(x-a_{1})q_{2}(x)$$
+Now, continuing this process assume that there is $q_{n}(x)$ to expand, then we will result in $$g(x)= b(x-a_{1})^{r_{1}}\cdots(x-a_{m})^{r_{m}}$$ with $b$ as the highest order coefficient, and $$r_{1}+\cdots r_{m}=n$$ additionally with $$a_{i}\neq a_{j}\: \forall i \neq j$$ $a_{i}$ is the rth complex root. 
+
+\chapter{Vector Spaces}
+
+\section{Definition of Vector Space}
+
+Given a set $E$, then $E$ is called a $K$-vector spaces, or a linear spaces on field $K$ if $E$ is equipped with two inner and outer operations $(+,\cdot)$ respectively, addition scalar multiplication such that $$\begin{cases}
+E(+) & \text{addition of}\: x_{i} \in E \\ \\
+E(\cdot) & \text{multiplication of}\: x_{i}\in E\: \text{and}\: y_{i}\in K \\
+\end{cases}$$ Both operations must also satisfy 
+$$
+\begin{cases}
+(E,+) \: \text{is an Abelian group} \\ \\
+
+\lambda(x+y)=\lambda x + \lambda y, &\forall x,y \in E, \forall \lambda \in K\\ \\
+
+(\lambda + \beta)x=\lambda x + \beta x, &\forall \lambda, \beta \in K, \forall x \in E \\
+ \\
+\lambda(\beta x)= (\lambda\beta)x & \forall \lambda, \beta \in K, x\in E \\
+ \\
+1\cdot x = x& \forall x \in E \\
+\end{cases}
+$$
+Each of the element of $E$ is a vector. The zero vector of vector space $E$ is denoted $\theta$, and the counter/inverse vector is denoted $-\vec{x}$ of $\vec{x}$. Both of them exist only one, with $\theta$ being a single distinct element, and $-x + (x)=\theta, \forall x \in E$, that is, for every vector $x$ there is only one inverse vector $-x$. We often use two types of notation for element vectors in vector spaces, either with arrows on top or not, and Greek symbols for special vectors. 
+
+We have some widely seen, and widely used vector spaces we will encounter in different forms. First one is the $\mathbb{R}^{n}$ vector space: $$\mathbb{R}^{n}=\{(x_{1},x_{2},x_{3},x_{4},\dots,x_{n})|x_{i}\in\mathbb{R}, \forall i \in [1,n]\}$$ Secondly, is the polynomial vector spaces $$P(x)=\{a_{0}+a_{1}x+a_{2}x^{2}+\dots+a_{n}x^{n}|a_{i} \in \mathbb{R}\}$$ and the matrices vector spaces $$M_{n}(x)=\{\text{matrices of the same order n}\}$$
+
+\subsection{Property of Vector Space}
+
+In accordance, we present some properties of vector spaces $E$. 
+\begin{enumerate}
+    \item $\theta x = \theta, \forall x\in E$
+\item $\alpha \theta = \theta, \forall \alpha \in K$
+\item $\alpha \cdot x = \theta$ if and only if $\alpha = 0$ or $\theta = x$
+\item $\alpha (-x) = -(\alpha )x, \forall \alpha \in K, x\in E$
+\end{enumerate}
+
+\subsection{Vector Subspace}
+
+Just as same as fields and ring, we have the definition of vector subspace. A vector space $(E,+, \circ)$ on field $K$ has a subspace with $V\subset E$ if 
+
+\begin{equation}
+    \forall x,y\in V, \forall k \in K,
+\begin{cases}
+x+y\in V \\
+k x \in V
+\end{cases}
+\end{equation}
+
+Loosely saying, $V$ is a subspace in $E$ if the operation contains itself, returning the value inside the space, of which the space is also a subset of the bigger space, $E$. 
+
+Formally, we would like to write it as a definition 
+
+\begin{Definition}
+    A set $A\neq \varnothing$, of vector space $E$ on $K$ is called a vector subspace of $E$ if it satisfies
+    \begin{enumerate}
+        \item $\forall \vec{x},\vec{y}\in A$ then $\vec{x}+\vec{y}\in A$
+        \item $\forall \vec{x}, \forall \lambda \in K$ then $\lambda x \in A$
+    \end{enumerate}
+\end{Definition}
+
+\section{Linear Combination, Linear (In)dependent and System of Vectors}
+
+\subsection{Linear Combination}
+
+Let $E$ be a vector spaces on $K$. Then, given a set $A$ contains $$A=\{\vec{V}_{1}, \vec{V}_{2},\cdots ,\vec{V}_{n} \}\: ,n \in [1,n]$$
+Then, the equation $$L_{n} = \lambda_{1} \vec{V}_{1}+ \lambda_{2}\vec{V}_{2}+\cdots+ \lambda_{n}\vec{V}_{n}=\sum\limits_{i=1}^{n}\lambda_{i}\vec{V}_{i}\: \: \forall \lambda_{i}\in K$$ is called the **linear combination** of $A$ - a system of vectors. 
+
+A interesting property of linear combination is that - if you have a set of vectors $A=\{V_{i}\}$, $B=\{U_{j}\}$ and $C=\{W_{k}\}$, then if $A$ can be represented by $B$, and $B$ can be represented by $C$, the $A$ can be represented by $C$. One tip to think of linear combination is the operation of combining vectors with additional steps - and a generalizing step. 
+
+\subsection{Linear Independent and Dependent}
+
+A system of vectors $$A=\{\vec{V}_{1}, \vec{V}_{2},\cdots ,\vec{V}_{n} \}\: ,n \in [1,n]$$ is called \textbf{linear dependent} if there exist scalars $\lambda_{1}, \cdots, \lambda_{n}$ not all *zero* such that $$L_{n} = \lambda_{1} \vec{V}_{1}+ \lambda_{2}\vec{V}_{2}+\cdots+ \lambda_{n}\vec{V}_{n}=\sum\limits_{i=1}^{n}\lambda_{i}\vec{V}_{i}=\textbf{0}$$
+with $\textbf{0}$ the zero vector. This implies that at least one of the scalars is non-zero, that is $a_{1}\neq 0$ and the equation is able to be written as $$\vec{V}_{1} = \frac{-a_{2}}{a_{1}}\vec{V}_{2}+\cdots+\frac{-a_{k}}{a_{1} }\vec{V}_{k},\:\forall k>1$$
+If $k=1$, then $\vec{V}_{1}=\textbf{0}$, and with $\lambda_{i}=a_{i}$
+
+A sequence/system of vectors $A$ is called linear independent if it is not dependent, that is, 
+$$\lambda_{1} \vec{V}_{1}+ \lambda_{2}\vec{V}_{2}+\cdots+ \lambda_{n}\vec{V}_{n}=\sum\limits_{i=1}^{n}\lambda_{i}\vec{V}_{i}=\textbf{0}$$ can only be satisfied by $\lambda_{i}=0$ for $i = 1,\cdots,n$. This implies that no vector in the sequence can be represented as a linear combination of the remaining vectors in the sequence. If a sequence of vectors contains the same vector twice, it is necessarily dependent. 
+
+The definition can be expanded as 
+
+\begin{Definition}
+    A vector set $S$ in vector space $V$ is linear independent if for all finite vector sets in $S$, $$\{ \vec{V}_{1}, \vec{V}_{2},\dots, \vec{V}_{m} \}\subset S$$ for $\vec{v}_{i}\neq \vec{v}_{j}, \forall i \neq j$
+\end{Definition}
+
+\subsection{Properties}
+
+We then have a property of linear independent sequences. 
+
+\begin{Theorem}
+    All subsets of a set of linear independent vectors are linear independent
+\end{Theorem}
+
+\begin{Theorem}
+    If the subset $A$ of a set $S$ is linear dependent then the mother set $S$ is also linear dependent. 
+\end{Theorem}
+
+\begin{Theorem}
+    $\{\vec{0}\}$ is a linear dependent vector system.
+\end{Theorem}
+
+\begin{Theorem}
+    A system of vectors $$A=\{\vec{V}_{1}, \vec{V}_{2},\cdots ,\vec{V}_{n} \}$$ with $n \geq 2$ is linear dependent if and only if there is a vector $\vec{V}_{i}$ in $A$ such that $\vec{V}_{i}$ can be represented by other vectors in the system.
+\end{Theorem}
+
+\section{Generator, Basis, and Dimension of Vector Space}
+
+\subsection{Generator}
+
+Given a system of vectors $V$ of $E$, if all vectors in vector space $E$ can be represented by linear transformation from $V$, then $V$ is the generator of $E$. Intuitively, if any vector inside a vector space can be constructed, or represented using a system of linear combination, that is, combining vectors, then that system of vector is the generator. 
+
+For example, the vector space $\mathbb{R}^{3}$ on $\mathbb{R}$ has the following system as generator: $$V_{\mathbb{R}^{3}}=\{e_{1}: (1,0,0); e_{2}: (0,1,0);e_{3}:(0,0,1)\}$$ since the combination $$e_{1}\lambda_{1}+e_{2}\lambda_{2}+e_{3}\lambda_{3} = \vec{x}, \vec{x}=(x_{1},x_{2},x_{3})$$ is valid. Considerably, we can write the vector $\vec{x}$ in vector space as $$\vec{x}=\begin{pmatrix}
+1 \\
+0 \\
+0
+\end{pmatrix}x_{1}+\begin{pmatrix}
+0 \\
+1 \\
+0
+\end{pmatrix}x_{2}+\begin{pmatrix}
+0 \\
+0 \\
+1
+\end{pmatrix}x_{3}$$ of which all the column matrices are $e_{1},e_{2}$ and $e_{3}$ accordingly. 
+
+If L is the vector space generated from $\{V\}$, then we denoted $$L=
+\mathcal{L}(\{\vec{V}_{i}\})$$
+
+\subsection{Basis}
+
+A basis is like a base of a building - anything of the building will be constructed from that. In vector space, we can see that a basis works the same way: anything is constructed using the basis. 
+
+Hence, the definition of a basis is a system of vectors that is both a generator and linear independent. Formally, we will write them as
+
+\begin{Definition}
+    The vector system $S=\{\vec{V}_{i}\}, i=\bar{1,n}$ is a basis of $E$ if and only if (iff) for all $\vec{Q}\in E$, we can construct them from $S$, that is $$\vec{Q}= \sum_{i=1}^{n} \lambda_{i}\vec{V}_{i} $$
+\end{Definition}
+
+For this definition, we will use necessity and sufficiency for better understanding. 
+
+\begin{Theorem}
+    We say that \textbf{the statement A is a necessary and sufficient condition for the statement B when B is true if and only if A is also true}. That is, either A and B are both true, or they are both false. Note that if A is necessary and sufficient for B , then B is necessary and sufficient for A.
+\end{Theorem}
+
+
+
+\subsubsection{Span of Vector Spaces}
+
+The linear span of a set $S$ of vector in vector space $E$ is defined as the set of all linear combinations of the vectors in $S$. Given a vector space $E$ over field $F$, The span of a set $S$ of vectors (not necessary finite) is defined to be the intersection $W$ of all subspaces of $E$ containing $S$. Formulationally, we have  $$\operatorname {span} (S)=\left\{{\left.\sum _{i=1}^{k}\lambda _{i}\mathbf {v} _{i}\;\right|\;k\in \mathbb {N} ,\mathbf {v} _{i}\in S,\lambda _{i}\in K}\right\}$$
+
+
+
+
+
+
+
+
+
+
+\end{document}
