@@ -1,0 +1,35 @@
+{
+	"nodes":[
+		{"id":"3b3128f8fff07b99","type":"text","text":"Identity element: $$\\forall e,x \\in X, e\\cdot x=x \\cdot e = x$$","x":-860,"y":-220,"width":325,"height":100,"color":"5"},
+		{"id":"a6ecf78330e36a0e","type":"text","text":"## Abelian Group\nIf a group is also commutative, that is $$xTy = yTx\\:\\forall e \\in G$$ then we call it an **Abelian group**. ","x":-360,"y":-150,"width":440,"height":233,"color":"2"},
+		{"id":"d0edefdd752c5527","type":"text","text":"Inverse element:\nAn element $x \\in X$ is called an inverse element if there exists $y \\in X$ that $$x\\cdot y = y \\cdot x = e$$","x":-860,"y":-800,"width":325,"height":120,"color":"5"},
+		{"id":"c9e055fb66f3d35a","type":"text","text":"#  Ring (definition)\n> An algebraic structure $(R,+,\\cdot)$ is called a ring if for $R\\neq \\varnothing$ and two binary operation $+$ and $\\cdot$, such that \n> \n> **Addition**: $(R,+)$ is an Abelian group. that is: \n> - $\\forall a,b,c\\in R, a+(b+c)=(a+b)+c$\n> - $\\exists e\\in R,\\forall a \\in R \\rightarrow a+e=e+a=a$\n> - $\\forall a \\in R, \\exists! -a \\in R\\:\\text{such that}\\:a+(-a)=(-a)+a=0$\n> - $\\forall a,b \\in R, a+b=b+a$\n> \n> **Multiplication**: \n> - $\\forall a,b,c\\in R$, we have $a\\cdot(b\\cdot c)=(a\\cdot b)\\cdot c$\n> \n> **Addition and multiplication together** \n> - $\\forall a,b,c \\in R$, $$a\\cdot (b+c)=a\\cdot b + a \\cdot c$$ and $$(a+b)\\cdot c=a\\cdot b+ b\\cdot c$$","x":280,"y":-555,"width":711,"height":638,"color":"3"},
+		{"id":"145c496bd175ae48","type":"text","text":"Symmetric properties: $$x\\cdot y = y \\cdot x, \\forall x,y \\in X$$","x":200,"y":-840,"width":325,"height":100,"color":"6"},
+		{"id":"c467928ba21cac36","type":"text","text":"Commutativity: $$\\forall a,b,c\\in X, a+(b+c)=(a+b)+c$$","x":-860,"y":170,"width":325,"height":100,"color":"5"},
+		{"id":"4c9deb48863f858c","type":"text","text":"","x":-368,"y":520,"width":250,"height":6,"color":"2"},
+		{"id":"f38267e8b9502f28","type":"text","text":"","x":200,"y":548,"width":250,"height":6,"color":"2"},
+		{"id":"acf1a734cb1fe5fd","type":"text","text":"","x":920,"y":548,"width":250,"height":6,"color":"2"},
+		{"id":"fbe25c7bd3007bff","type":"text","text":"Associativity: \n$$(x\\cdot y)\\cdot z=x\\cdot(y\\cdot z), \\forall x,y,z\\in X$$","x":-860,"y":-490,"width":325,"height":100,"color":"5"},
+		{"id":"2b57e1cfb616bc36","type":"text","text":"## Commutative Ring\nA commutative ring $(K,+,\\cdot)$ is a ring that the multiplication binary operation is commutative: $$x\\cdot y = y \\cdot x ;\\forall x, y \\in K$$","x":1120,"y":83,"width":401,"height":154,"color":"2"},
+		{"id":"d07a969838114804","type":"text","text":"# Field\nA field is a **commutative ring** $(K, +,\\cdot)$ with unit $1 \\neq 0$, and $$\\forall x \\neq 0, \\exists x^{-1}\\in K\\: \\text{such that}\\: x\\cdot x^{-1}=1$$\n\nIn more details: \n\n> [!def] Definition of a field \n> A structure $(R,+,\\cdot)$ where $+$ and $\\cdot$ are two binary operation on $R$ is a field if \n> (A). $(R,+)$ is an Abelian group. \n> (B). $(R\\setminus \\{0\\},\\cdot)$ is an Abelian group. \n> (C). The distributive laws hold. \n\n","x":1680,"y":-65,"width":472,"height":451,"color":"3"},
+		{"id":"559ee4b5978cff50","type":"text","text":"# Group\n> [!def] Definition\n> Let $G$ be a non-empty set with binary operation $T$. Then $(G,T)$ is called a group if the following holds: \n> - (G1) Binary operation $T$ is associative: $$xT(yTz)= (xTy)Tz$$\n> - (G2) $G$ has an identity element with respect to $T$, that is $\\exists e\\in G, \\forall x \\in G, xTe = eTx = x$\n> - (G3) $\\forall x \\in G, \\exists h \\in G$ such that $gTh=hTg=e$, meaning $h$ is an inverse element of $g$ and reverse. \n\n","x":-359,"y":-740,"width":483,"height":485,"color":"3"},
+		{"id":"d385f8a11124cb5c","type":"text","text":"## Mixed commutativity of addition and multiplication\n$\\forall a,b,c \\in R$, $$a\\cdot (b+c)=a\\cdot b + a \\cdot c$$ and $$(a+b)\\cdot c=a\\cdot b+ b\\cdot c$$","x":124,"y":220,"width":680,"height":220,"color":"2"}
+	],
+	"edges":[
+		{"id":"8b05678141c18ca9","fromNode":"fbe25c7bd3007bff","fromSide":"right","toNode":"559ee4b5978cff50","toSide":"left","color":"2"},
+		{"id":"188a0f607e72a95e","fromNode":"3b3128f8fff07b99","fromSide":"right","toNode":"559ee4b5978cff50","toSide":"left","color":"2"},
+		{"id":"c7a8c7afddc31b8d","fromNode":"559ee4b5978cff50","fromSide":"bottom","toNode":"a6ecf78330e36a0e","toSide":"top","color":"4"},
+		{"id":"0bb5bdca2bf095e2","fromNode":"c467928ba21cac36","fromSide":"right","toNode":"a6ecf78330e36a0e","toSide":"left","color":"2"},
+		{"id":"816f65d174630fe5","fromNode":"d0edefdd752c5527","fromSide":"right","toNode":"559ee4b5978cff50","toSide":"left","color":"2"},
+		{"id":"76a62e375e49e8e3","fromNode":"a6ecf78330e36a0e","fromSide":"right","toNode":"c9e055fb66f3d35a","toSide":"left","color":"5"},
+		{"id":"6de39396736fdd4f","fromNode":"559ee4b5978cff50","fromSide":"right","toNode":"c9e055fb66f3d35a","toSide":"left","color":"5"},
+		{"id":"84d895f3565982c1","fromNode":"145c496bd175ae48","fromSide":"right","toNode":"c9e055fb66f3d35a","toSide":"top","color":"3"},
+		{"id":"c891ee245f391cc4","fromNode":"d385f8a11124cb5c","fromSide":"top","toNode":"c9e055fb66f3d35a","toSide":"bottom","color":"5"},
+		{"id":"eb31c1bc265cd9a1","fromNode":"c467928ba21cac36","fromSide":"bottom","toNode":"4c9deb48863f858c","toSide":"left","color":"2"},
+		{"id":"43707a7e6aa77f78","fromNode":"4c9deb48863f858c","fromSide":"right","toNode":"f38267e8b9502f28","toSide":"left","color":"2"},
+		{"id":"38f977ca4ce4b143","fromNode":"f38267e8b9502f28","fromSide":"right","toNode":"acf1a734cb1fe5fd","toSide":"left","color":"2"},
+		{"id":"dec83c87bba71699","fromNode":"acf1a734cb1fe5fd","fromSide":"right","toNode":"2b57e1cfb616bc36","toSide":"bottom","color":"2"},
+		{"id":"37cab7956e3e2d21","fromNode":"c9e055fb66f3d35a","fromSide":"right","toNode":"2b57e1cfb616bc36","toSide":"top","color":"4"},
+		{"id":"308b02f41fbdbde1","fromNode":"2b57e1cfb616bc36","fromSide":"right","toNode":"d07a969838114804","toSide":"left","color":"5"}
+	]
+}
